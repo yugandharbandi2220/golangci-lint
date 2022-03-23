@@ -160,6 +160,7 @@ func (m Manager) GetAllSupportedLinterConfigs() []*linter.Config {
 			WithLoadForGoAnalysis().
 			WithPresets(linter.PresetPerformance, linter.PresetBugs).
 			WithURL("https://github.com/sonatard/noctx"),
+		linter.NewConfig(golinters.NewGoroutine()),
 		linter.NewConfig(golinters.NewErrcheck()).
 			WithSince("v1.0.0").
 			WithLoadForGoAnalysis().
@@ -517,6 +518,7 @@ func (m Manager) GetAllSupportedLinterConfigs() []*linter.Config {
 	enabledByDefault := map[string]bool{
 		golinters.NewGovet(nil).Name():                  true,
 		golinters.NewErrcheck().Name():                  true,
+		golinters.NewGoroutine().Name(): true,
 		golinters.NewStaticcheck(staticcheckCfg).Name(): true,
 		golinters.NewUnused(unusedCfg).Name():           true,
 		golinters.NewGosimple(gosimpleCfg).Name():       true,
